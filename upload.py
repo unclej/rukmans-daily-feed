@@ -13,7 +13,7 @@ PAGES_URL = f"https://{GITHUB_USERNAME}.github.io/rukmans-daily-feed"
 
 def convert_to_mp3(wav_path):
     mp3_path = wav_path.replace(".wav", ".mp3")
-    print(f"Converting to MP3...")
+    print("Converting to MP3...")
     result = subprocess.run(
         ["ffmpeg", "-i", wav_path, "-codec:a", "libmp3lame",
          "-qscale:a", "4", "-y", mp3_path],
@@ -129,9 +129,9 @@ def upload_episode(audio_path, script_path):
             print(f"Git error: {result.stderr}")
             return False
 
-    print(f"✓ Pushed to GitHub")
+    print("✓ Pushed to GitHub")
     print(f"\nFeed URL: {PAGES_URL}/feed.xml")
-    print(f"Add this URL to Apple Podcasts on your iPhone")
+    print("Add this URL to Apple Podcasts on your iPhone")
     return True
 
 

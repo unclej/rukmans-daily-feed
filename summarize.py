@@ -26,23 +26,23 @@ def summarize(newsletters_path):
         newsletter_text += f"\n\n--- {n['sender']} | {n['subject']} ---\n"
         newsletter_text += n["body"]
 
-    prompt = f"""You are writing a spoken morning briefing script to be read aloud by a 
-text-to-speech voice. Today is {today}.
-
-Here are today's newsletters:
-{newsletter_text}
-
-Write a natural, conversational spoken script that:
-- Opens with a warm greeting and today's date
-- Covers the key stories and ideas from each newsletter
-- Flows naturally between topics with smooth transitions
-- Skips ads, subscription pitches, and boilerplate
-- Ends with a brief sign-off
-- Is about 3-4 minutes of speaking time (roughly 450-600 words)
-- Uses no bullet points, headers, or markdown — pure spoken prose
-- Never says "according to the newsletter" — just tell the stories naturally
-
-Write only the script, nothing else."""
+    prompt = (
+        "You are writing a spoken morning briefing script to be read aloud by a text-to-speech"
+        "voice. "
+        f"Today is {today}.\n\n"
+        "Here are today's newsletters:\n"
+        f"{newsletter_text}\n\n"
+        "Write a natural, conversational spoken script that:\n"
+        "- Opens with a warm greeting and today's date\n"
+        "- Covers the key stories and ideas from each newsletter\n"
+        "- Flows naturally between topics with smooth transitions\n"
+        "- Skips ads, subscription pitches, and boilerplate\n"
+        "- Ends with a brief sign-off\n"
+        "- Is about 3-4 minutes of speaking time (roughly 450-600 words)\n"
+        "- Uses no bullet points, headers, or markdown — pure spoken prose\n"
+        "- Never says \"according to the newsletter\" — just tell the stories naturally\n\n"
+        "Write only the script, nothing else."
+    )
 
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
