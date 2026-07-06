@@ -35,12 +35,12 @@ def _extract_highlights(newsletter):
     """Pass 1: Extract key highlights from a single newsletter."""
     body = newsletter["body"][:MAX_CHARS_PER_NEWSLETTER]
     prompt = (
-        f"Extract the 3-5 most important stories, insights, or takeaways from this newsletter. "
+        f"Extract the 6-8 most important stories, insights, or takeaways from this newsletter. "
         f"Be specific and concrete — include names, numbers, and details. "
-        f"Return only a short bulleted list (no headers, no fluff, no intro sentence).\n\n"
+        f"Return only a bulleted list (no headers, no fluff, no intro sentence).\n\n"
         f"Newsletter from {newsletter['sender']} — \"{newsletter['subject']}\":\n{body}"
     )
-    result = _call_api(prompt, max_tokens=512)
+    result = _call_api(prompt, max_tokens=1024)
     if not result:
         return None
     return result
@@ -106,7 +106,7 @@ def summarize(newsletters_path):
         "extra weight — multiple sources signal it's especially significant\n"
         "- Flow naturally between topics with smooth transitions\n"
         "- End with a brief sign-off\n"
-        "- Target 3-4 minutes of speaking time (roughly 450-600 words)\n"
+        "- Target 10 minutes of speaking time (roughly 1,300-1,500 words)\n"
         "- Use no bullet points, headers, or markdown — pure spoken prose\n"
         "- Never say 'according to the newsletter' — just tell the stories naturally\n\n"
         "Write only the script, nothing else."
