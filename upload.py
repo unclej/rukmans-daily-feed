@@ -3,12 +3,32 @@ import subprocess
 import json
 from datetime import date, datetime
 from dotenv import load_dotenv
+from PIL import Image
 
 load_dotenv(os.path.expanduser(".env"))
 
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
 REPO_PATH = os.path.expanduser(os.getenv("GITHUB_REPO_PATH"))
 PAGES_URL = f"https://{GITHUB_USERNAME}.github.io/rukmans-daily-feed"
+SOURCE_ARTWORK = os.path.join(os.path.dirname(__file__), "jrukman-meatpie.jpg")
+ARTWORK_FILENAME = "artwork.jpg"
+ARTWORK_SIZE = 3000
+
+
+def ensure_artwork():
+    """Center-crop and resize source artwork to a square, copy to repo if not present."""
+    dest = os.path.join(REPO_PATH, ARTWORK_FILENAME)
+    if os.path.exists(dest):
+        return
+    img = Image.open(SOURCE_ARTWORK).convert("RGB")
+    w, h = img.size
+    side = min(w, h)
+    left = (w - side) // 2
+    top = (h - side) // 2
+    img = img.crop((left, top, left + side, top + side))
+    img = img.resize((ARTWORK_SIZE, ARTWORK_SIZE), Image.LANCZOS)
+    img.save(dest, "JPEG", quality=95)
+    print(f"✓ Artwork written ({ARTWORK_SIZE}x{ARTWORK_SIZE})")
 
 
 def convert_to_mp3(wav_path):
@@ -47,6 +67,7 @@ def generate_rss(episodes):
     <link>{PAGES_URL}</link>
     <language>en-us</language>
     <itunes:author>{GITHUB_USERNAME}</itunes:author>
+    <itunes:image href="{PAGES_URL}/{ARTWORK_FILENAME}"/>
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>{items}
   </channel>
@@ -70,6 +91,9 @@ def save_episodes_index(episodes):
 def upload_episode(audio_path, script_path):
     today = date.today().strftime("%Y-%m-%d")
     title = f"Morning Briefing — {date.today().strftime('%B %d, %Y')}"
+
+    # Ensure podcast artwork is in the repo
+    ensure_artwork()
 
     # Convert WAV to MP3
     mp3_path = convert_to_mp3(audio_path)
@@ -135,8 +159,44 @@ def upload_episode(audio_path, script_path):
     return True
 
 
+def update_artwork():
+    """Refresh artwork and regenerate the feed, without touching episodes or using AI credits."""
+    # Remove existing artwork so ensure_artwork() rewrites it from source
+    dest = os.path.join(REPO_PATH, ARTWORK_FILENAME)
+    if os.path.exists(dest):
+        os.remove(dest)
+
+    ensure_artwork()
+
+    episodes = load_episodes_index()
+    rss_content = generate_rss(episodes)
+    feed_path = os.path.join(REPO_PATH, "feed.xml")
+    with open(feed_path, "w") as f:
+        f.write(rss_content)
+    print(f"✓ Feed regenerated ({len(episodes)} episodes)")
+
+    print("Pushing to GitHub...")
+    cmds = [
+        ["git", "-C", REPO_PATH, "add", "."],
+        ["git", "-C", REPO_PATH, "commit", "-m", "Update podcast artwork and feed"],
+        ["git", "-C", REPO_PATH, "push"],
+    ]
+    for cmd in cmds:
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Git error: {result.stderr}")
+            return False
+
+    print("✓ Pushed to GitHub")
+    print(f"\nFeed URL: {PAGES_URL}/feed.xml")
+    return True
+
+
 if __name__ == "__main__":
     import sys
-    audio = sys.argv[1] if len(sys.argv) > 1 else "/tmp/test.wav"
-    script = sys.argv[2] if len(sys.argv) > 2 else "/tmp/briefing_script.txt"
-    upload_episode(audio, script)
+    if len(sys.argv) > 1 and sys.argv[1] == "--artwork":
+        update_artwork()
+    else:
+        audio = sys.argv[1] if len(sys.argv) > 1 else "/tmp/test.wav"
+        script = sys.argv[2] if len(sys.argv) > 2 else "/tmp/briefing_script.txt"
+        upload_episode(audio, script)

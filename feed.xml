@@ -6,6 +6,7 @@
     <link>https://unclej.github.io/rukmans-daily-feed</link>
     <language>en-us</language>
     <itunes:author>unclej</itunes:author>
+    <itunes:image href="https://unclej.github.io/rukmans-daily-feed/artwork.jpg"/>
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>
     <item>

@@ -4,3 +4,4 @@ requests
 kokoro-onnx
 soundfile
 huggingface_hub
+pillow
