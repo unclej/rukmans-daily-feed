@@ -1,7 +1,7 @@
 import os
 import sys
 import subprocess
-from datetime import date
+from datetime import datetime
 from fetch_newsletters import fetch_newsletters
 from summarize import summarize
 from upload import upload_episode
@@ -9,14 +9,14 @@ import json
 
 
 def run():
-    today = date.today().strftime("%Y-%m-%d")
-    audio_path = os.path.expanduser(f"episodes/episode-{today}.wav")
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H%M")
+    audio_path = os.path.expanduser(f"episodes/episode-{timestamp}.wav")
 
     # Make sure episodes directory exists
     os.makedirs(os.path.expanduser("episodes"), exist_ok=True)
 
     print(f"\n{'='*50}")
-    print(f"Morning Briefing Pipeline — {today}")
+    print(f"Morning Briefing Pipeline — {timestamp}")
     print(f"{'='*50}\n")
 
     # Step 1 — Fetch newsletters

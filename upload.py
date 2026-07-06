@@ -125,8 +125,9 @@ def upload_episode(audio_path, script_path):
         "date": today,
     }
 
-    # Update episodes index — keep last 30
+    # Update episodes index — deduplicate by URL, keep last 30
     episodes = load_episodes_index()
+    episodes = [e for e in episodes if e["url"] != episode_url]
     episodes.insert(0, new_episode)
     episodes = episodes[:30]
     save_episodes_index(episodes)
