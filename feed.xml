@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Morning Briefing</title>
+    <description>Your daily AI-generated newsletter briefing</description>
+    <link>https://unclej.github.io/rukmans-daily-feed</link>
+    <language>en-us</language>
+    <itunes:author>unclej</itunes:author>
+    <itunes:category text="News"/>
+    <itunes:explicit>false</itunes:explicit>
+    <item>
+      <title>Morning Briefing — July 06, 2026</title>
+      <description>Good morning. Today is Monday, July 6th, 2026, and I am here to bring you up to speed on the stories shaping our world this morning.
+
+We begin with the high-stakes situation in Iran, where a national funeral is underway for Supreme Leader Ayatollah Ali Khamenei. He was killed in U.S.–Israeli airstri</description>
+      <enclosure url="https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-06.mp3" length="1845981" type="audio/mpeg"/>
+      <pubDate>Mon, 06 Jul 2026 16:51:42 +0000</pubDate>
+      <guid>https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-06.mp3</guid>
+    </item>
+  </channel>
+</rss>
