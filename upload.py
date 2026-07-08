@@ -103,10 +103,11 @@ def upload_episode(audio_path, script_path):
     if not mp3_path:
         return False
 
-    # Copy MP3 to repo
+    # Copy MP3 to repo (skip if already in place)
     filename = os.path.basename(mp3_path)
     dest_path = os.path.join(REPO_PATH, "episodes", filename)
-    subprocess.run(["cp", mp3_path, dest_path])
+    if os.path.abspath(mp3_path) != os.path.abspath(dest_path):
+        subprocess.run(["cp", mp3_path, dest_path])
 
     # Read script for description
     with open(script_path, "r") as f:
