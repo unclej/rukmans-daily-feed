@@ -7,8 +7,8 @@ from PIL import Image, ImageOps
 
 load_dotenv(os.path.expanduser(".env"))
 
-GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
-REPO_PATH = os.path.expanduser(os.getenv("GITHUB_REPO_PATH"))
+GITHUB_USERNAME = os.getenv("GH_USERNAME")
+REPO_PATH = os.path.dirname(os.path.abspath(__file__))
 PAGES_URL = f"https://{GITHUB_USERNAME}.github.io/rukmans-daily-feed"
 SOURCE_ARTWORK = os.path.join(os.path.dirname(__file__), "jrukman-meatpie.jpg")
 ARTWORK_FILENAME = "artwork.jpg"
