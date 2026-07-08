@@ -9,14 +9,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - run: pip install -r requirements.txt
-      - name: Run script
+
+      - name: Install system dependencies
+        run: sudo apt-get install -y ffmpeg
+
+      - name: Cache Kokoro models
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro/
+          key: kokoro-models-v1.0
+
+      - name: Download Kokoro models
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: bash setup_kokoro.sh
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           GH_USERNAME: ${{ secrets.GH_USERNAME }}
-        run: python your_script.py
+        run: python pipeline.py
