@@ -3,7 +3,7 @@ import subprocess
 import json
 from datetime import date, datetime
 from dotenv import load_dotenv
-from PIL import Image, ImageOps
+from PIL import Image
 
 load_dotenv(os.path.expanduser(".env"))
 
@@ -20,10 +20,8 @@ def ensure_artwork():
     dest = os.path.join(REPO_PATH, ARTWORK_FILENAME)
     if os.path.exists(dest):
         return
-    img = Image.open(SOURCE_ARTWORK)
-    img = ImageOps.exif_transpose(img)  # apply EXIF rotation before anything else
+    img = Image.open(SOURCE_ARTWORK).convert("RGB")
     img = img.rotate(-90, expand=True)  # 90 degrees clockwise
-    img = img.convert("RGB")
     w, h = img.size
     side = min(w, h)
     left = (w - side) // 2

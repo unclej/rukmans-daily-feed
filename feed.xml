@@ -3,10 +3,10 @@
   <channel>
     <title>Morning Briefing</title>
     <description>Your daily AI-generated newsletter briefing</description>
-    <link>https://unclej.github.io/rukmans-daily-feed</link>
+    <link>https://None.github.io/rukmans-daily-feed</link>
     <language>en-us</language>
-    <itunes:author>unclej</itunes:author>
-    <itunes:image href="https://unclej.github.io/rukmans-daily-feed/artwork.jpg"/>
+    <itunes:author>None</itunes:author>
+    <itunes:image href="https://None.github.io/rukmans-daily-feed/artwork.jpg"/>
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>
     <item>
