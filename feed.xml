@@ -10,6 +10,15 @@
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>
     <item>
+      <title>Morning Briefing — July 09, 2026</title>
+      <description>Good morning. It is Wednesday, July 8th, 2026, and I am here to get your day started with a briefing on the most important stories unfolding across the globe, from the latest breakthroughs in artificial intelligence to high-stakes political drama and bizarre headlines of the day.
+
+We start in the te</description>
+      <enclosure url="https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-08-2358.mp3" length="3229365" type="audio/mpeg"/>
+      <pubDate>Thu, 09 Jul 2026 00:02:04 +0000</pubDate>
+      <guid>https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-08-2358.mp3</guid>
+    </item>
+    <item>
       <title>Morning Briefing — July 06, 2026</title>
       <description>Good morning, and happy Monday. It is July 6, 2026. I hope you had a restful weekend. Let's get you caught up on the fast-paced news defining our world this morning.
 
