@@ -1,7 +1,8 @@
 name: Daily Script
 on:
   schedule:
-    - cron: '0 13 * * *'
+    - cron: '0 12 * * *'  # 5 AM PDT (summer)
+    - cron: '0 13 * * *'  # 5 AM PST (winter)
   workflow_dispatch:
 
 jobs:

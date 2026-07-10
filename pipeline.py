@@ -8,8 +8,18 @@ from upload import upload_episode
 import json
 
 
+def already_ran_today(today_str):
+    index_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "episodes.json")
+    if not os.path.exists(index_path):
+        return False
+    with open(index_path) as f:
+        episodes = json.load(f)
+    return any(ep.get("date") == today_str for ep in episodes)
+
+
 def run():
     timestamp = datetime.now().strftime("%Y-%m-%d-%H%M")
+    today = timestamp[:10]  # YYYY-MM-DD
     audio_path = os.path.expanduser(f"episodes/episode-{timestamp}.wav")
 
     # Make sure episodes directory exists
@@ -18,6 +28,10 @@ def run():
     print(f"\n{'='*50}")
     print(f"Morning Briefing Pipeline — {timestamp}")
     print(f"{'='*50}\n")
+
+    if already_ran_today(today):
+        print(f"Episode for {today} already exists. Skipping.")
+        sys.exit(0)
 
     # Step 1 — Fetch newsletters
     print("Step 1/4 — Fetching newsletters...")
