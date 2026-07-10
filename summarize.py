@@ -78,7 +78,7 @@ def summarize(newsletters_path):
                 "subject": n["subject"],
                 "highlights": highlights,
             })
-            print(f"  ✓ Done")
+            print("  ✓ Done")
         else:
             print(f"  ✗ Failed to extract highlights from: {n['subject'][:60]}")
 

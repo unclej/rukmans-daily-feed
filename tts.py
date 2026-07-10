@@ -1,5 +1,6 @@
 import sys
 import os
+import re
 from kokoro_onnx import Kokoro
 import soundfile as sf
 
@@ -9,6 +10,10 @@ if len(sys.argv) < 3:
 
 text = sys.argv[1]
 output_path = sys.argv[2]
+
+# Replace periods between digits with " point " so version numbers like
+# "5.4" or "GPT-4.1" aren't split into separate sentences by the TTS engine
+text = re.sub(r'(?<=\d)\.(?=\d)', ' point ', text)
 
 model_dir = os.path.expanduser("./kokoro")
 k = Kokoro(
