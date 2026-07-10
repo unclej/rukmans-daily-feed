@@ -10,6 +10,15 @@
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>
     <item>
+      <title>Morning Briefing — July 10, 2026</title>
+      <description>Good morning. It is Friday, July 10, 2026, and I hope you are ready for a deep dive into the latest developments shaping our world today. We have a lot of ground to cover, from major shifts in the global technology landscape to significant updates in infrastructure and culture.
+
+We begin today with </description>
+      <enclosure url="https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-10-0836.mp3" length="2841717" type="audio/mpeg"/>
+      <pubDate>Fri, 10 Jul 2026 08:39:40 +0000</pubDate>
+      <guid>https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-10-0836.mp3</guid>
+    </item>
+    <item>
       <title>Morning Briefing — July 09, 2026</title>
       <description>Good morning, and happy Thursday, July 9, 2026. It is a pleasure to have you with us for today's briefing as we navigate a rapidly evolving landscape of geopolitical tension, breakthrough technology, and shifting political tides.
 
