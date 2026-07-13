@@ -1,7 +1,7 @@
 import os
 import subprocess
 import json
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from dotenv import load_dotenv
 from PIL import Image
 
@@ -116,7 +116,7 @@ def upload_episode(audio_path, script_path):
 
     # Build episode entry
     episode_url = f"{PAGES_URL}/episodes/{filename}"
-    pubdate = datetime.now().strftime("%a, %d %b %Y %H:%M:%S +0000")
+    pubdate = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
 
     new_episode = {
         "title": title,
