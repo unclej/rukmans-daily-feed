@@ -10,6 +10,13 @@
     <itunes:category text="News"/>
     <itunes:explicit>false</itunes:explicit>
     <item>
+      <title>Morning Briefing — July 15, 2026</title>
+      <description>Good morning. It is Wednesday, July 15, 2026, and I am glad to have you with me for today’s briefing. We have a lot of ground to cover this morning, ranging from significant medical developments and historical discoveries to a major shift in how we handle the infrastructure behind the artificial int</description>
+      <enclosure url="https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-15-0659.mp3" length="3022605" type="audio/mpeg"/>
+      <pubDate>Wed, 15 Jul 2026 14:02:22 +0000</pubDate>
+      <guid>https://unclej.github.io/rukmans-daily-feed/episodes/episode-2026-07-15-0659.mp3</guid>
+    </item>
+    <item>
       <title>Morning Briefing — July 14, 2026</title>
       <description>Good morning. Today is Tuesday, July 14, 2026, and as we step into another day, it is clear that the pace of global events—from the shifting landscape of international security to the rapidly evolving frontier of artificial intelligence—shows no signs of slowing down.
 
